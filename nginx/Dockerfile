@@ -2,6 +2,6 @@ FROM nginx
 USER root
 
 # for copy default webpage to container
-COPY index.html /usr/share/nginx/html/index.html
+ADD index.nginx-debian.html /var/www/html/index.nginx-debian.html
 
 EXPOSE 80
