@@ -1,11 +1,25 @@
-pipeline {
-agent any
+node{
+   def commit_id
+   stage('Checkout Git') {
+	  
+			checkout scm
+			sh "git rev-parse --short HEAD > .git/commit-id"                        
+			commit_id = readFile('.git/commit-id').trim()  
+   }
 
-stages {
-stage(‘Build Docker’) {
-steps {
-sh 'docker build -t mraagil/briliancloud:nginx .'
+   
+  
+   stage('Docker Build & Push') {
+     
+			docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+			def app = docker.build("mraagil/briliancloud:nginx", '.').push()
+			
+  } 
+     
+   }
+   
+   
 }
-}
-}
-}
+	
+
+
