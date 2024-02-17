@@ -1,4 +1,4 @@
-node{
+pipeline{
    def commit_id
    stage('Checkout Git') {
 	 try { 
