@@ -4,7 +4,7 @@ agent any
 stages {
 stage(‘Build Docker’) {
 steps {
-sh ‘docker build -t mraagil/briliancloud:nginx .’
+sh 'docker build -t mraagil/briliancloud:nginx .'
 }
 }
 }
